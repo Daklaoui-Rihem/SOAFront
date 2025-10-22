@@ -24,18 +24,18 @@ export class UpdateMovie implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.movieService.listeGenres().subscribe(gens => {
-      this.genres = gens;
-      console.log(gens);
-    });
+  this.movieService.listeGenres().subscribe(gens => {
+    this.genres = gens._embedded.genres;
+    console.log(gens);
+  });
 
-    this.movieService
-      .consulterMovie(this.activatedRoute.snapshot.params['id'])
-      .subscribe(mov => {
-        this.currentMovie = mov;
-        this.updatedGenId = this.currentMovie.genre!.idGenre!;
-      });
-  }
+  this.movieService
+    .consulterMovie(this.activatedRoute.snapshot.params['id'])
+    .subscribe(mov => {
+      this.currentMovie = mov;
+      this.updatedGenId = this.currentMovie.genre!.idGenre!;
+    });
+}
 
   updateMovie() {
     this.currentMovie.genre = this.genres.find(

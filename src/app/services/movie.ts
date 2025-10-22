@@ -3,7 +3,7 @@ import { Movie } from '../model/movie.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Genre } from '../model/genre.model';
-
+import { GenreWrapper } from '../model/genre-wrapper.model';  // Add this import
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,6 +14,7 @@ const httpOptions = {
 })
 export class MovieService {
   apiURL: string = 'http://localhost:8080/movies/api';
+  apiURLGen: string = 'http://localhost:8080/movies/api/gen';  // Changed URL
 
   constructor(private http: HttpClient) {}
 
@@ -39,7 +40,7 @@ export class MovieService {
     return this.http.put<Movie>(this.apiURL, movie, httpOptions);
   }
 
-  listeGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(this.apiURL + "/gen");
+  listeGenres(): Observable<GenreWrapper> {  // Changed return type
+    return this.http.get<GenreWrapper>(this.apiURLGen);
   }
 }

@@ -16,21 +16,18 @@ export class AddMovie implements OnInit {
   genres!: Genre[];
   newIdGen!: number;
 
-  constructor(
-    private movieService: MovieService,
-    private router: Router
-  ) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit(): void {
-    this.movieService.listeGenres().subscribe(gens => {
-      this.genres = gens;
+    this.movieService.listeGenres().subscribe((gens) => {
+      this.genres = gens._embedded.genres;
       console.log(gens);
     });
   }
 
   ajouterMovie() {
-    this.newMovie.genre = this.genres.find(gen => gen.idGenre == this.newIdGen)!;
-    this.movieService.ajouterMovie(this.newMovie).subscribe(mov => {
+    this.newMovie.genre = this.genres.find((gen) => gen.idGenre == this.newIdGen)!;
+    this.movieService.ajouterMovie(this.newMovie).subscribe((mov) => {
       console.log(mov);
       this.router.navigate(['movies']);
     });
