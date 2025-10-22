@@ -34,6 +34,17 @@
         class="form-control"
       />
     </div>
+    
+    <!-- Add Genre Dropdown -->
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Genre</label>
+      <select class="form-control" [(ngModel)]="newIdGen" name="newIdGen">
+        <option *ngFor="let gen of genres" [value]="gen.idGenre">
+          {{ gen.nomGenre }}
+        </option>
+      </select>
+    </div>
+    
     <div class="mt-2">
       <button type="submit" (click)="ajouterMovie()" class="btn btn-success">Ajouter</button>
     </div>

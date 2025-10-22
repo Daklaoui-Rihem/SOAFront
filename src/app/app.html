@@ -1,7 +1,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Gestion des Produits</a>
+      <a class="navbar-brand" routerLink="/movies">Gestion des Movies</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -27,7 +27,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Produits
+              Movies
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" routerLink="/add-movie">Ajouter</a></li>
@@ -57,5 +57,5 @@
       </div>
     </div>
   </nav>
-  <app-movies></app-movies>
+  <router-outlet></router-outlet> 
 

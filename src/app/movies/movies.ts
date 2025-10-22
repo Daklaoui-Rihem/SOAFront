@@ -8,23 +8,30 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   selector: 'app-movies',
   templateUrl: './movies.html',
   imports: [CommonModule, RouterLink, RouterOutlet],
-
 })
 export class Movies implements OnInit {
   movies?: Movie[];
-  private movieService = new MovieService();
+
+  constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.movies = this.movieService.listeMovies();
+    this.chargerMovies();
+  }
+
+  chargerMovies() {
+    this.movieService.listeMovies().subscribe(movs => {
+      console.log(movs);
+      this.movies = movs;
+    });
   }
 
   supprimerMovie(m: Movie) {
-    //console.log(m);
     let conf = confirm('Etes-vous sûr ?');
-    if (conf){ 
-      this.movieService.supprimerMovie(m);
+    if (conf) {
+      this.movieService.supprimerMovie(m.idMovie!).subscribe(() => {
+        console.log("movie supprimé");
+        this.chargerMovies();
+      });
     }
   }
-
-  constructor() {}
 }
