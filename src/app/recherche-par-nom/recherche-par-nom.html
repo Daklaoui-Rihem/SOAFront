@@ -1,0 +1,49 @@
+<div class="container">
+  <!-- Search Form - Method 2: Real-time Search with Pipe -->
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom du Movie (en tapant avec pipe)</label>
+      <input
+        class="form-control"
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        placeholder="Tapez pour filtrer avec pipe"
+      />
+    </div>
+  </form>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Date Création</th>
+          <th>Genre</th>
+        </tr>
+        @for (movie of movies | searchFilter: searchTerm; track movie.idMovie) {
+        <tbody>
+          <tr>
+            <td>{{ movie.idMovie }}</td>
+            <td>{{ movie.nomMovie }}</td>
+            <td>{{ movie.prixMovie }}</td>
+            <td>{{ movie.dateCreation | date : 'dd/MM/yyyy' }}</td>
+            @if(movie.genre) {
+            <td>{{ movie.genre.nomGenre }}</td>
+            } @else {
+            <td>PAS DE GENRE</td>
+            }
+          </tr>
+        </tbody>
+        } @empty {
+        <tbody>
+          <tr>
+            <td colspan="5" class="text-center">Aucun movie trouvé</td>
+          </tr>
+        </tbody>
+        }
+      </table>
+    </div>
+  </div>
+</div>
