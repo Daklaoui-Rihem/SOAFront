@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../model/movie.model';
 import { MovieService } from '../services/movie';
+import { AuthService } from '../services/auth';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
@@ -12,7 +13,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class Movies implements OnInit {
   movies?: Movie[];
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.chargerMovies();
@@ -34,5 +38,4 @@ export class Movies implements OnInit {
       });
     }
   }
-
 }

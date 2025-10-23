@@ -9,8 +9,10 @@
           <th>Nom</th>
           <th>Prix</th>
           <th>Date Création</th>
-          <th>Genre</th> <!-- Add this column -->
+          <th>Genre</th>
+          @if(authService.isAdmin()) {
           <th>Actions</th>
+          }
         </tr>
         }
         @for (movie of movies; track movie.idMovie; let pos=$index; let nbr=$count; let last=$last) {
@@ -21,9 +23,11 @@
             <td>{{ movie.nomMovie }}</td>
             <td>{{ movie.prixMovie }}</td>
             <td>{{ movie.dateCreation | date : 'dd/MM/yyyy' }}</td>
-            <td>{{ movie.genre?.nomGenre }}</td> <!-- Display genre name -->
+            <td>{{ movie.genre?.nomGenre }}</td>
+            @if(authService.isAdmin()) {
             <td><a class="btn btn-danger" (click)="supprimerMovie(movie)">Supprimer</a></td>
             <td><a class="btn btn-success" [routerLink]="['/updateMovie',movie.idMovie]">Modifier</a></td>
+            }
           </tr>
         </tbody>
         @if(last) {<h1>Nombre: {{nbr}}</h1>}

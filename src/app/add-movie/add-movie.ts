@@ -26,10 +26,23 @@ export class AddMovie implements OnInit {
   }
 
   ajouterMovie() {
-    this.newMovie.genre = this.genres.find((gen) => gen.idGenre == this.newIdGen)!;
-    this.movieService.ajouterMovie(this.newMovie).subscribe((mov) => {
-      console.log(mov);
-      this.router.navigate(['movies']);
+    // Ne pas envoyer l'ID dans newMovie pour l'ajout
+    this.newMovie.idMovie = undefined;
+    
+    // Créer un objet genre avec seulement l'ID
+    this.newMovie.genre = { idGenre: this.newIdGen };
+    
+    console.log('Movie à ajouter:', this.newMovie);
+    
+    this.movieService.ajouterMovie(this.newMovie).subscribe({
+      next: (mov) => {
+        console.log('Movie ajouté:', mov);
+        this.router.navigate(['movies']);
+      },
+      error: (err) => {
+        console.error('Erreur lors de l\'ajout:', err);
+        alert('Erreur lors de l\'ajout du movie');
+      }
     });
   }
 }

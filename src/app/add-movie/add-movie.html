@@ -3,10 +3,6 @@
     <h2>Ajouter un Movie :</h2>
   </div>
   <form>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <label>ID Movie</label>
-      <input type="text" [(ngModel)]="newMovie.idMovie" name="idMovie" class="form-control" />
-    </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Nom Movie</label>
       <input
@@ -35,10 +31,10 @@
       />
     </div>
     
-    <!-- Add Genre Dropdown -->
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Genre</label>
       <select class="form-control" [(ngModel)]="newIdGen" name="newIdGen">
+        <option value="" disabled selected>Choisir un genre</option>
         <option *ngFor="let gen of genres" [value]="gen.idGenre">
           {{ gen.nomGenre }}
         </option>
