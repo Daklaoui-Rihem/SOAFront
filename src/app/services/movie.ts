@@ -51,7 +51,18 @@ export class MovieService {
   }
 
   rechercherParNom(nom: string): Observable<Movie[]> {
-  const url = `${this.apiURL}/movsByName/${nom}`;
-  return this.http.get<Movie[]>(url);
+    const url = `${this.apiURL}/movsByName/${nom}`;
+    return this.http.get<Movie[]>(url);
+  }
+
+
+  ajouterGenre(gen: Genre): Observable<Genre>{
+  if(gen.idGenre && gen.idGenre > 0) {
+    // Update existing genre (PUT request)
+    return this.http.put<Genre>(this.apiURLGen, gen, httpOptions);
+  } else {
+    // Add new genre (POST request)
+    return this.http.post<Genre>(this.apiURLGen, gen, httpOptions);
+  }
 }
 }
