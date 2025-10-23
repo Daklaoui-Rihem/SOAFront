@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth';
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
 })
-export class LoginComponent {
+export class Login {
   user = new User();
   erreur = 0;
 

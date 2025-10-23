@@ -5,8 +5,8 @@ import { UpdateMovie } from './update-movie/update-movie';
 import { RechercheParGenre } from './recherche-par-genre/recherche-par-genre';
 import { RechercheParNom } from './recherche-par-nom/recherche-par-nom';
 import { ListeGenres } from './liste-genres/liste-genres';
-import { LoginComponent } from './login/login';
-import { ForbiddenComponent } from './forbidden/forbidden';
+import { Login } from './login/login';
+import { Forbidden } from './forbidden/forbidden';
 import { movieGuard } from './services/movie-guard';
 
 export const routes: Routes = [
@@ -16,7 +16,7 @@ export const routes: Routes = [
     {path: "rechercheParGenre", component: RechercheParGenre},
     {path: "rechercheParNom", component: RechercheParNom},
     {path: "listeGenres", component: ListeGenres},
-    {path: "login", component: LoginComponent},
-    {path: "app-forbidden", component: ForbiddenComponent},
+    {path: "login", component: Login},
+    {path: "app-forbidden", component: Forbidden},
     {path: "", redirectTo: "movies", pathMatch: "full"}
 ];
